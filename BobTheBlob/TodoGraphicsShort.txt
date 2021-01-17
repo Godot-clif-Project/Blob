@@ -1,0 +1,88 @@
+This is only a portion of the full game, the portion needed to make it playable.
+    General
+    The UI, etc
+        Chest
+            25 slots, dark grey and brown wood.
+        UI
+            Dark grey and brown wood, a small pannel with 2 slots on the top, and one on the bottom.
+        Escape menu
+            Buttons
+                New Game
+                    Brown wood with a dark grey outline
+                Load
+                    Brown wood with a dark grey outline, and a darkened out version for when there is no game to load.
+                Quit
+                    Brown wood with a dark grey outline
+    Base
+    The opressors' Base, civilians and enforcers live here.
+        Background
+            Grey~~done
+        Tiles
+            Grey Brick~~done
+        NPC
+            Guard
+                Like a Blob, but with futuristic armor made of dark grey plates, no skin visible.(animated idle)
+            Quartermaster
+                Brown Blob with a functional vest(animated idle)
+        Sprites
+            Shelves with Guard armor
+            Electrical light
+ Animation for the main character
+ idle and walking
+    
+    
+            A big locked mechanized door.
+                to be pasted in the background
+            Crates
+            Door 
+                Open and shut, to be pasted into the tile walls
+            Stairs
+                Like the normal grey brick, but in stair format.
+        Tree
+        Where the opressed live, a big hollowed out tree.
+            Background
+                Brown
+            Tiles
+                Hollowed out tree
+                    Organic brown, like a tree trunk but without bark.
+            NPCs
+                Opressed
+                    Do a few different Blobs, any colour you choose, and any clothing you choose as long as it looks scruffy.(later on you can add animations)
+            Sprites
+                Shoots
+                    Like tree shoots, a small twig attached to the wall/floor/celling with a leave on the top.
+                Stair
+                    Stair variant of the wood tile.
+                Crane
+                    Like a mechanical crane, metal.
+                Crates
+                Blob containers(empty)
+                    Like beds for blobs, kind of like a petri dish.
+                Blob containers(occupied)
+                    A few of these, like the empty ones but with a blob sleeping inside.(any colour) 
+                Algae vats
+                    Big glass cylinders, with green water inside.
+                Furnace
+                    For drying algae.
+                    
+                Portal
+                    a spinning vortex, any colour, with statues of something like the godot bot in stone.
+        
+        Hub
+        sinester, this is the level which conects to all others
+        Color palette, dark grey, and red highlights
+            Background
+                Dark grey with dark red ribbons        
+            Tiles
+                Dark grey bricks, with red highlights
+            Enemies
+                Shadow blobs(like the main character, but not dressed and all gray and dark)(animated later)
+                Black hole~~done
+                Dungeon master(like a godot bot, but scary and dark, waving its arms around)(animation later)
+            Sprites
+                Go crazy with this, do as many sprites as you want, like lighting sources, morbid details, etc
+            Others
+            A side view of a door to the Desert(sandstone pillars, sand piles, desert yellow, brown and red colour palette)
+                
+    Desert
+        See the update, coming soon

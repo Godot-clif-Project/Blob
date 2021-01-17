@@ -1,0 +1,47 @@
+Areas
+    Base
+    Place where you can talk to some NPCs all of the small plot happens here.
+        Background
+            Grey~~done
+        Tiles
+            Grey~~done
+        NPCs
+            Doctor
+            Blue blob with a lab coat
+            
+        Sprites
+        
+        Others
+    Poisonous Green
+    
+    Mad Garden
+    
+    Pyramid
+
+    Desert
+    
+    Dusk
+    
+    Mine
+    
+    
+    
+Maybe??????????????????????
+    Room of Doom
+    
+    Mirror corridor.
+    
+    
+    
+    
+            Background
+        
+            Tiles
+        
+            Enemies
+        
+            NPCs
+        
+            Sprites
+        
+            Others
