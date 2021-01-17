@@ -10,18 +10,81 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "Actor",
+"class": "Character2D",
 "language": "GDScript",
-"path": "res://SRC/Actor.gd"
+"path": "res://TrokaraScripts/character2d.gd"
+}, {
+"base": "Node",
+"class": "CharacterJump",
+"language": "GDScript",
+"path": "res://TrokaraScripts/character_jump.gd"
+}, {
+"base": "Character2D",
+"class": "ClassicCharacter2D",
+"language": "GDScript",
+"path": "res://TrokaraScripts/classic_character_2d.gd"
+}, {
+"base": "CharacterJump",
+"class": "ControllableCharacterJump",
+"language": "GDScript",
+"path": "res://TrokaraScripts/controllable_character_jump.gd"
+}, {
+"base": "Node",
+"class": "FaceMovement2D",
+"language": "GDScript",
+"path": "res://TrokaraScripts/face_movement_2d.gd"
+}, {
+"base": "Node",
+"class": "MovementInput2D",
+"language": "GDScript",
+"path": "res://TrokaraScripts/movement_input_2d.gd"
 } ]
 _global_script_class_icons={
-"Actor": ""
+"Character2D": "",
+"CharacterJump": "",
+"ClassicCharacter2D": "",
+"ControllableCharacterJump": "",
+"FaceMovement2D": "",
+"MovementInput2D": ""
 }
 
 [application]
 
 config/name="Bob The Blob"
+run/main_scene="res://base.tscn"
 config/icon="res://icon.png"
+
+[input]
+
+"move up"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"move down"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"move left"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"move right"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+2d/default_gravity=9800
 
 [rendering]
 
