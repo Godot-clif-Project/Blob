@@ -6,7 +6,10 @@
 [node name="base" type="Node2D"]
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 16701.5, -866.826 )
+position = Vector2( 16885.6, -1075.43 )
+collision/safe_margin = 1.0
+floor_max_angle_degrees = 100.0
+enable_slope_resistance = false
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 position = Vector2( 0, -500 )

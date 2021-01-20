@@ -172,7 +172,7 @@ func _physics_process(delta: float):
 	# test vector is the direction we check if a floor is present
 	# the moment the character is initialised, we check the down vector
 	# but after the first contact, we check in the direction of the last floor normal
-	var test_vector := down_vector if last_floor_collision.empty() else - last_floor_collision[SerialEnums.NORMAL]
+	var test_vector := global_transform.y.normalized()
 	var travel_vector := linear_velocity * delta
 	
 	# main movement code
@@ -184,41 +184,45 @@ func _physics_process(delta: float):
 		var collision := serial_move_and_collide(travel_vector)
 		
 		if not collision.empty():
+			print(collision[SerialEnums.NORMAL])
 			if is_floor(collision):
 				# it is possible to somehow hit a floor when moving up to it (hard to explain)
 				# So this code filters that out
 				var dot_product := linear_velocity.dot(test_vector)
 				if is_zero_approx(dot_product) or dot_product > 0:
 					floor_collision = collision
-					linear_velocity = align_to_floor(linear_velocity)
-			
-			elif was_on_floor and dont_slide_up_walls:
-				# when hitting a wall, the character will slide up the wall, but that is not desired
-				# so the movement will be corrected to slide along the wall (not up the wall)
-				var corrected_vector := ((travel_vector - travel_vector.project(up_vector)).normalized() * travel_vector.length()).slide((collision[SerialEnums.NORMAL] - collision[SerialEnums.NORMAL].project(up_vector)).normalized())
-				collision = serial_move_and_collide(corrected_vector - collision[SerialEnums.TRAVEL])
-				
-				# correct the linear velocity
-				if collision.empty():
-					travel_vector = corrected_vector
-				
-				else:
-					travel_vector = collision[SerialEnums.TRAVEL]
-				
-				linear_velocity = travel_vector / delta
+					if was_on_floor:
+						linear_velocity = align_to_floor(linear_velocity)
 			
 			else:
-				var corrected_vector: Vector2 = collision[SerialEnums.REMAINDER].slide(collision[SerialEnums.NORMAL])
-				var second_collision := serial_move_and_collide(collision[SerialEnums.REMAINDER].slide(collision[SerialEnums.NORMAL]))
-				
-				# correct the linear velocity
-				if second_collision.empty():
-					travel_vector = collision[SerialEnums.TRAVEL] + corrected_vector
+				wall_collision = collision
+				if was_on_floor and dont_slide_up_walls:
+					# when hitting a wall, the character will slide up the wall, but that is not desired
+					# so the movement will be corrected to slide along the wall (not up the wall)
+					var corrected_vector := ((travel_vector - travel_vector.project(up_vector)).normalized() * travel_vector.length()).slide((collision[SerialEnums.NORMAL] - collision[SerialEnums.NORMAL].project(up_vector)).normalized())
+					collision = serial_move_and_collide(corrected_vector - collision[SerialEnums.TRAVEL])
+					
+					# correct the linear velocity
+					if collision.empty():
+						travel_vector = corrected_vector
+					
+					else:
+						travel_vector = collision[SerialEnums.TRAVEL]
+					
+					linear_velocity = travel_vector / delta
 				
 				else:
-					travel_vector = collision[SerialEnums.TRAVEL] + second_collision[SerialEnums.TRAVEL]
-				
-				linear_velocity = travel_vector / delta
+					var corrected_vector: Vector2 = collision[SerialEnums.REMAINDER].slide(collision[SerialEnums.NORMAL])
+					var second_collision := serial_move_and_collide(collision[SerialEnums.REMAINDER].slide(collision[SerialEnums.NORMAL]))
+					
+					# correct the linear velocity
+					if second_collision.empty():
+						travel_vector = collision[SerialEnums.TRAVEL] + corrected_vector
+					
+					else:
+						travel_vector = collision[SerialEnums.TRAVEL] + second_collision[SerialEnums.TRAVEL]
+					
+					linear_velocity = travel_vector / delta
 	
 	# wall tracking
 	# so that even if the character isn't moving but is touching a wall, wall_collision will still update
@@ -255,7 +259,9 @@ func _physics_process(delta: float):
 		if not was_on_floor:
 			var vertical_speed := get_vertical_speed()
 			emit_signal("landed", vertical_speed)
+			print(linear_velocity)
 			linear_velocity += vertical_speed * down_vector
+			print(linear_velocity)
 	
 	else:
 		linear_velocity += down_vector * gravity_acceleration * delta

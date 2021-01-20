@@ -78,14 +78,7 @@ func set_initial_jump_height(height: float) -> void:
 		yield(self, "ready")
 	
 	initial_jump_height = height
-	# sets the new initial_velocity to be the same direction as the last initial_velocity
-	if initial_velocity == null or is_zero_approx(initial_velocity.length_squared()):
-		# If the initial_velocity is empty (all values are 0), then a new vector pointing straight up
-		initial_velocity = character.up_vector * sqrt(2 * character.gravity_acceleration * height)
-		
-	else:
-		# scales the last initial_velocity according to its vertical component
-		initial_velocity *= sqrt(2 * character.gravity_acceleration * height) / character.up_vector.dot(initial_velocity)
+	initial_velocity = character.up_vector * sqrt(2 * character.gravity_acceleration * height)
 
 
 func set_full_jump_height(height: float) -> void:
@@ -133,11 +126,11 @@ func set_jumping(value: bool) -> void:
 		if not _initial_jumped and _can_initial_jump():
 			_initial_jumped = true
 			character.temporary_unsnap()
-			character.linear_velocity += _calculate_impulse(true)
+			character.linear_velocity += character.global_transform.basis_xform(_calculate_impulse(true))
 		
 		elif current_jumps > 0:
 			current_jumps -= 1
-			character.linear_velocity = _calculate_impulse(false)
+			character.linear_velocity = character.global_transform.basis_xform(_calculate_impulse(false))
 		
 		_current_jump_time = jump_time
 		set_physics_process(value)
@@ -163,6 +156,11 @@ func _physics_process(delta):
 	
 	_current_jump_time -= delta
 	character.linear_velocity += character.up_vector * acceleration * delta
+
+
+func recalculate_jump_heights() -> void:
+	set_initial_jump_height(initial_jump_height)
+	set_full_jump_height(full_jump_height)
 
 
 func jump_to(height: float) -> void:

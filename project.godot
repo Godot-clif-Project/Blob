@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "MovementInput2D",
 "language": "GDScript",
 "path": "res://TrokaraScripts/movement_input_2d.gd"
+}, {
+"base": "ClassicCharacter2D",
+"class": "WallSticker",
+"language": "GDScript",
+"path": "res://TrokaraScripts/wall_sticker.gd"
 } ]
 _global_script_class_icons={
 "Character2D": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "ClassicCharacter2D": "",
 "ControllableCharacterJump": "",
 "FaceMovement2D": "",
-"MovementInput2D": ""
+"MovementInput2D": "",
+"WallSticker": ""
 }
 
 [application]
@@ -53,6 +59,10 @@ _global_script_class_icons={
 config/name="Bob The Blob"
 run/main_scene="res://base.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [input]
 
