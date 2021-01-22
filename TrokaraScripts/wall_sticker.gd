@@ -2,7 +2,7 @@ class_name WallSticker
 extends ClassicCharacter2D
 
 
-export var reorientation_weight := 12.0
+export var reorientation_weight := 8.0
 export var falling_reorientation_weight := 4.0
 export var jump_path: NodePath = "CharacterJump"
 

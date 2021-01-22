@@ -184,15 +184,10 @@ func _physics_process(delta: float):
 		var collision := serial_move_and_collide(travel_vector)
 		
 		if not collision.empty():
-			print(collision[SerialEnums.NORMAL])
 			if is_floor(collision):
-				# it is possible to somehow hit a floor when moving up to it (hard to explain)
-				# So this code filters that out
-				var dot_product := linear_velocity.dot(test_vector)
-				if is_zero_approx(dot_product) or dot_product > 0:
-					floor_collision = collision
-					if was_on_floor:
-						linear_velocity = align_to_floor(linear_velocity)
+				floor_collision = collision
+				if was_on_floor:
+					linear_velocity = align_to_floor(linear_velocity)
 			
 			else:
 				wall_collision = collision
@@ -259,9 +254,7 @@ func _physics_process(delta: float):
 		if not was_on_floor:
 			var vertical_speed := get_vertical_speed()
 			emit_signal("landed", vertical_speed)
-			print(linear_velocity)
 			linear_velocity += vertical_speed * down_vector
-			print(linear_velocity)
 	
 	else:
 		linear_velocity += down_vector * gravity_acceleration * delta
