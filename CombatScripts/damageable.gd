@@ -1,16 +1,33 @@
+# Adds health functionality to the parent
 class_name Damageable
 extends Node
 
 
 signal death
+signal healed(value)
 signal damaged(value)
 
-export var health := 3.0
+export var max_health := 3.0 setget set_max_health
+export var health := 3.0 setget set_health
 
 
-func damage(value: float) -> void:
-	health -= value
-	emit_signal("damaged", value)
+func set_max_health(value: float) -> void:
+	max_health = value
+	if health > max_health:
+		health = max_health
+
+
+func set_health(value: float) -> void:
+	if value < health:
+		emit_signal("damaged", health - value)
 	
-	if health <= 0:
+	elif value > health:
+		emit_signal("healed", value - health)
+	
+	health = value
+	
+	if health > max_health:
+		health = max_health
+	
+	elif health <= 0:
 		emit_signal("death")

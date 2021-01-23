@@ -27,7 +27,7 @@ func get_collision_vector() -> Vector2:
 	return get_collision_point() - global_transform.origin
 
 
-func _process(delta):
+func _process(_delta):
 	var player := GlobalData.player
 	
 	if is_instance_valid(player):

@@ -1,3 +1,4 @@
+# Adds the parent to a property in GlobalData
 class_name NodeFlag
 extends Node
 

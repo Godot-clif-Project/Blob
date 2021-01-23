@@ -1,3 +1,5 @@
+# We rewrite shape collisions from scratch because that way the player won't collide with the blob ball
+# If we just did a KinematicBody2D, even with layers set to 0, the player can still collide with the ball
 class_name BlobBallBody
 extends Node2D
 
@@ -5,6 +7,7 @@ extends Node2D
 export var shape_path: NodePath = "CollisionShape2D"
 export(int, LAYERS_2D_PHYSICS) var collision_mask := 3
 export var damage := 1
+export var damage_only_target := true
 
 var target: Node2D
 var speed := 3000.0
@@ -23,19 +26,28 @@ func _ready():
 
 
 func _check_collisions() -> bool:
+	# Checks if the ball is intersecting any shape when called
+	# Returns true if collision detected
+	# Also handles collisions with damageable nodes
 	var result := direct_space_state.intersect_shape(physics_query)
 	
 	if result.empty():
 		return false
 	
 	for collision_data in result:
-		var damageable: Damageable = collision_data["collider"].get_node_or_null("Damageable")
+		var collider: PhysicsBody2D = collision_data["collider"]
+		
+		if damage_only_target and collider != target:
+			continue
+		
+		var damageable: Damageable = collider.get_node_or_null("Damageable")
 		
 		if damageable != null:
-			damageable.damage(damage)
+			damageable.health -= damage
 	
 	set_physics_process(false)
 	var fade := Fade.new(fade_time)
+	# warning-ignore:return_value_discarded
 	fade.connect("tween_all_completed", self, "queue_free")
 	add_child(fade)
 	
@@ -45,6 +57,7 @@ func _check_collisions() -> bool:
 func _physics_process(delta: float):
 	var new_transform := global_transform
 	var rotation_angle := global_transform.x.angle_to(target.global_transform.origin - global_transform.origin)
+	# Rotates only the basis (godot should have a method for this already!)
 	new_transform.x = new_transform.x.rotated(rotation_angle)
 	new_transform.y = new_transform.y.rotated(rotation_angle)
 	global_transform = global_transform.interpolate_with(new_transform, turning_weight * delta)
@@ -62,4 +75,5 @@ func _physics_process(delta: float):
 	
 	else:
 		global_transform.origin += travel_vector * result[0]
+		# warning-ignore:return_value_discarded
 		_check_collisions()
