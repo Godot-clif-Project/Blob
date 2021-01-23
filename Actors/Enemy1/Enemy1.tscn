@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TrokaraScripts/wall_sticker.gd" type="Script" id=1]
+[ext_resource path="res://TrokaraScripts/character_jump.gd" type="Script" id=2]
+[ext_resource path="res://Actors/Enemy1/enemy1.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 247.636
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 1 )
+dont_slide_up_walls = false
+jump_path = NodePath("")
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 23.9045 )
+texture = ExtResource( 3 )
+
+[node name="CharacterJump" type="Node" parent="."]
+script = ExtResource( 2 )
+initial_jump_height = 800.0
+full_jump_height = 1500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

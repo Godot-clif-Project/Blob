@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://TrokaraScripts/controllable_character_jump.gd"
 }, {
 "base": "Node",
+"class": "Damageable",
+"language": "GDScript",
+"path": "res://CombatScripts/damageable.gd"
+}, {
+"base": "Node",
 "class": "FaceMovement2D",
 "language": "GDScript",
 "path": "res://TrokaraScripts/face_movement_2d.gd"

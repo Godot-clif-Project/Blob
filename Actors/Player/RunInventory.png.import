@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RunInventory.png-16acd028295257f0cacae0fc345580d9.stex"
+path="res://.import/RunInventory.png-b65d9feadb72cfdd7dae1a5d5cd4cb44.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RunInventory.png"
-dest_files=[ "res://.import/RunInventory.png-16acd028295257f0cacae0fc345580d9.stex" ]
+source_file="res://Actors/Player/RunInventory.png"
+dest_files=[ "res://.import/RunInventory.png-b65d9feadb72cfdd7dae1a5d5cd4cb44.stex" ]
 
 [params]
 
