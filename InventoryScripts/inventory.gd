@@ -11,6 +11,7 @@ var inventory: Dictionary
 
 
 func set_inventory_size(value: int) -> void:
+	# warning-ignore-all:return_value_discarded
 	inventory_size = value
 	
 	if inventory_size > inventory.size():

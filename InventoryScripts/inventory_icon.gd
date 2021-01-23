@@ -10,6 +10,7 @@ onready var inventory: Inventory = get_parent()
 
 
 func _ready():
+	# warning-ignore-all:return_value_discarded
 	inventory.connect("items_updated", self, "_handle_updated")
 
 

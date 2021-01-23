@@ -39,12 +39,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://TrokaraScripts/face_movement_2d.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "Inventory",
 "language": "GDScript",
 "path": "res://InventoryScripts/inventory.gd"
 }, {
-"base": "Reference",
+"base": "TextureRect",
 "class": "InventoryIcon",
 "language": "GDScript",
 "path": "res://InventoryScripts/inventory_icon.gd"
@@ -86,7 +86,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GlobalItemList="*res://inventory_scripts/item_list.gd"
+GlobalItemList="*res://InventoryScripts/item_list.gd"
 
 [debug]
 
