@@ -7,7 +7,7 @@ export var falling_reorientation_weight := 4.0
 export var jump_path: NodePath = "CharacterJump"
 
 onready var jump_node: CharacterJump = get_node(jump_path)
-
+	
 
 func _process(delta):
 	if is_on_floor():

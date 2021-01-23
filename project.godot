@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "BlobBallBody",
+"language": "GDScript",
+"path": "res://CombatScripts/blob_ball_body.gd"
+}, {
+"base": "Node",
+"class": "BlobBallShooter",
+"language": "GDScript",
+"path": "res://AI/blob_ball_shooter.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character2D",
 "language": "GDScript",
@@ -35,9 +45,19 @@ _global_script_classes=[ {
 "path": "res://CombatScripts/damageable.gd"
 }, {
 "base": "Node",
+"class": "EnemyFlag",
+"language": "GDScript",
+"path": "res://Actors/enemy_flag.gd"
+}, {
+"base": "Node",
 "class": "FaceMovement2D",
 "language": "GDScript",
 "path": "res://TrokaraScripts/face_movement_2d.gd"
+}, {
+"base": "Tween",
+"class": "Fade",
+"language": "GDScript",
+"path": "res://Effects/fade.gd"
 }, {
 "base": "Node",
 "class": "Inventory",
@@ -59,22 +79,38 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://TrokaraScripts/movement_input_2d.gd"
 }, {
+"base": "Node",
+"class": "NodeFlag",
+"language": "GDScript",
+"path": "res://Actors/node_flag.gd"
+}, {
+"base": "RayCast2D",
+"class": "NodeSight",
+"language": "GDScript",
+"path": "res://AI/node_sight.gd"
+}, {
 "base": "ClassicCharacter2D",
 "class": "WallSticker",
 "language": "GDScript",
 "path": "res://TrokaraScripts/wall_sticker.gd"
 } ]
 _global_script_class_icons={
+"BlobBallBody": "",
+"BlobBallShooter": "",
 "Character2D": "",
 "CharacterJump": "",
 "ClassicCharacter2D": "",
 "ControllableCharacterJump": "",
 "Damageable": "",
+"EnemyFlag": "",
 "FaceMovement2D": "",
+"Fade": "",
 "Inventory": "",
 "InventoryIcon": "",
 "InventoryItem": "",
 "MovementInput2D": "",
+"NodeFlag": "",
+"NodeSight": "",
 "WallSticker": ""
 }
 
@@ -87,6 +123,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalItemList="*res://InventoryScripts/item_list.gd"
+GlobalData="*res://global_data.gd"
 
 [debug]
 
