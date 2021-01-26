@@ -9,7 +9,7 @@ export var speed := 3000.0
 export(int, LAYERS_2D_PHYSICS) var collision_mask := 3
 export var damage := 1
 export var damage_only_target := true
-export var solver_iterations := 1
+export var target_prediction := true		# If true, this node will aim for where the target will be
 
 var target: Node2D
 var fade_time := 1.0
@@ -23,7 +23,35 @@ onready var direct_space_state := get_world_2d().direct_space_state
 
 
 func _ready():
-	var travel_vector := target.global_transform.origin - global_transform.origin
+	var travel_vector: Vector2
+	
+	if target_prediction:
+		hide()
+		set_physics_process(false)
+		
+		var last_origin := target.global_transform.origin
+		var last_time := OS.get_system_time_msecs()
+		yield(get_tree(), "idle_frame")
+		var new_origin := target.global_transform.origin
+		var target_velocity := (new_origin - last_origin) / (OS.get_system_time_msecs() - last_time) * 1000.0
+		
+		if target_velocity.length() > 0:
+			var o := new_origin - global_transform.origin
+			var a := target_velocity.length_squared() - speed * speed
+			var b := 2 * target_velocity.dot(o)
+			var c := o.length_squared()
+			var lead_time := (- b - sqrt(b * b - 4 * a * c)) / 2 / a
+			travel_vector = new_origin - global_transform.origin + lead_time * target_velocity
+		
+		else:
+			travel_vector = new_origin - global_transform.origin
+		
+		show()
+		set_physics_process(true)
+	
+	else:
+		travel_vector = target.global_transform.origin - global_transform.origin
+	
 	linear_velocity = travel_vector.normalized() * speed + Vector2.UP * gravity_acceleration / 2 * travel_vector.length() / speed
 	
 	physics_query.collision_layer = collision_mask

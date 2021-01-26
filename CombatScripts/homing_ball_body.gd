@@ -9,11 +9,14 @@ export var speed := 3000.0
 export(int, LAYERS_2D_PHYSICS) var collision_mask := 3
 export var damage := 1
 export var damage_only_target := true
+export var target_prediction := true
 
 var target: Node2D
 var turning_weight := 6.0
 var fade_time := 1.0
 var physics_query := Physics2DShapeQueryParameters.new()
+
+var _last_origin: Vector2
 
 onready var shape_node: CollisionShape2D = get_node(shape_path)
 onready var direct_space_state := get_world_2d().direct_space_state
@@ -23,6 +26,21 @@ func _ready():
 	look_at(target.global_transform.origin)
 	physics_query.collision_layer = collision_mask
 	physics_query.set_shape(shape_node.shape)
+
+
+func _predict_target_position(delta: float) -> Vector2:
+	var new_origin := target.global_transform.origin
+	var target_velocity := (new_origin - _last_origin) / delta
+	
+	if target_velocity.length() > 0:
+		var o := new_origin - global_transform.origin
+		var a := target_velocity.length_squared() - speed * speed
+		var b := 2 * target_velocity.dot(o)
+		var c := o.length_squared()
+		var lead_time := (- b - sqrt(b * b - 4 * a * c)) / 2 / a
+		return new_origin + lead_time * target_velocity
+	
+	return new_origin
 
 
 func _check_collisions() -> bool:
@@ -56,7 +74,7 @@ func _check_collisions() -> bool:
 
 func _physics_process(delta: float):
 	var new_transform := global_transform
-	var rotation_angle := global_transform.x.angle_to(target.global_transform.origin - global_transform.origin)
+	var rotation_angle := global_transform.x.angle_to((_predict_target_position(delta) if target_prediction else target.global_transform.origin) - global_transform.origin)
 	# Rotates only the basis (godot should have a method for this already!)
 	new_transform.x = new_transform.x.rotated(rotation_angle)
 	new_transform.y = new_transform.y.rotated(rotation_angle)
@@ -77,3 +95,5 @@ func _physics_process(delta: float):
 		global_transform.origin += travel_vector * result[0]
 		# warning-ignore:return_value_discarded
 		_check_collisions()
+	
+	_last_origin = target.global_transform.origin
