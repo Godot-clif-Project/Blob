@@ -9,16 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "BlobBallBody",
-"language": "GDScript",
-"path": "res://CombatScripts/blob_ball_body.gd"
-}, {
-"base": "Node",
-"class": "BlobBallShooter",
-"language": "GDScript",
-"path": "res://AI/blob_ball_shooter.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Character2D",
 "language": "GDScript",
@@ -59,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Effects/fade.gd"
 }, {
+"base": "Node2D",
+"class": "HomingBallBody",
+"language": "GDScript",
+"path": "res://CombatScripts/homing_ball_body.gd"
+}, {
 "base": "Node",
 "class": "Inventory",
 "language": "GDScript",
@@ -89,14 +84,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AI/node_sight.gd"
 }, {
+"base": "Node2D",
+"class": "SceneShooter",
+"language": "GDScript",
+"path": "res://AI/scene_shooter.gd"
+}, {
+"base": "Node2D",
+"class": "SpitBallBody",
+"language": "GDScript",
+"path": "res://CombatScripts/spit_ball_body.gd"
+}, {
 "base": "ClassicCharacter2D",
 "class": "WallSticker",
 "language": "GDScript",
 "path": "res://TrokaraScripts/wall_sticker.gd"
 } ]
 _global_script_class_icons={
-"BlobBallBody": "",
-"BlobBallShooter": "",
 "Character2D": "",
 "CharacterJump": "",
 "ClassicCharacter2D": "",
@@ -105,12 +108,15 @@ _global_script_class_icons={
 "EnemyFlag": "",
 "FaceMovement2D": "",
 "Fade": "",
+"HomingBallBody": "",
 "Inventory": "",
 "InventoryIcon": "",
 "InventoryItem": "",
 "MovementInput2D": "",
 "NodeFlag": "",
 "NodeSight": "",
+"SceneShooter": "",
+"SpitBallBody": "",
 "WallSticker": ""
 }
 

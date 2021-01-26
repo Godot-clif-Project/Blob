@@ -1,22 +1,22 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://CombatScripts/blob_ball_body.gd" type="Script" id=1]
-[ext_resource path="res://Actors/BlobBall/blob_ball1.png" type="Texture" id=2]
+[ext_resource path="res://Actors/BlobBall1/blob_ball1.png" type="Texture" id=1]
+[ext_resource path="res://CombatScripts/spit_ball_body.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 384, 384 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 1 )
 region = Rect2( 384, 0, 384, 384 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 384, 384, 384 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 1 )
 region = Rect2( 384, 384, 384, 384 )
 
 [sub_resource type="SpriteFrames" id=5]
@@ -31,13 +31,14 @@ animations = [ {
 radius = 95.5321
 
 [node name="BlobBallBody" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -83.9052, 0 )
 rotation = -3.14159
 scale = Vector2( 1, -1 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
