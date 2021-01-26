@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AStarGoto",
+"language": "GDScript",
+"path": "res://addons/astar_navigation/scripts/astar_goto.gd"
+}, {
+"base": "Node",
+"class": "AStarNavigation",
+"language": "GDScript",
+"path": "res://addons/astar_navigation/scripts/astar_navigation.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character2D",
 "language": "GDScript",
@@ -69,6 +79,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://InventoryScripts/inventory_item.gd"
 }, {
+"base": "PathTrigger2D",
+"class": "JumpZone",
+"language": "GDScript",
+"path": "res://addons/astar_navigation/scripts/jump_zone.gd"
+}, {
+"base": "Node",
+"class": "LinkedNode",
+"language": "GDScript",
+"path": "res://addons/astar_navigation/scripts/linked_node.gd"
+}, {
 "base": "Node",
 "class": "MovementInput2D",
 "language": "GDScript",
@@ -83,6 +103,11 @@ _global_script_classes=[ {
 "class": "NodeSight",
 "language": "GDScript",
 "path": "res://AI/node_sight.gd"
+}, {
+"base": "Area2D",
+"class": "PathTrigger2D",
+"language": "GDScript",
+"path": "res://addons/astar_navigation/scripts/path_trigger_2D.gd"
 }, {
 "base": "Node2D",
 "class": "SceneShooter",
@@ -100,6 +125,8 @@ _global_script_classes=[ {
 "path": "res://TrokaraScripts/wall_sticker.gd"
 } ]
 _global_script_class_icons={
+"AStarGoto": "",
+"AStarNavigation": "",
 "Character2D": "",
 "CharacterJump": "",
 "ClassicCharacter2D": "",
@@ -112,9 +139,12 @@ _global_script_class_icons={
 "Inventory": "",
 "InventoryIcon": "",
 "InventoryItem": "",
+"JumpZone": "",
+"LinkedNode": "",
 "MovementInput2D": "",
 "NodeFlag": "",
 "NodeSight": "",
+"PathTrigger2D": "",
 "SceneShooter": "",
 "SpitBallBody": "",
 "WallSticker": ""
@@ -140,6 +170,10 @@ settings/stdout/print_fps=true
 window/size/height=576
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "astar_navigation" )
 
 [input]
 
