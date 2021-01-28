@@ -1,4 +1,4 @@
-class_name NodeSight
+class_name NodeSight2D
 extends RayCast2D
 
 

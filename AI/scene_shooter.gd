@@ -3,7 +3,7 @@ class_name SceneShooter
 extends Node2D
 
 
-export var trigger_node_path: NodePath							# the node which will trigger this launcher
+export var trigger_node_path: NodePath = "../NodeSight"						# the node which will trigger this launcher
 export var reload_time := 3.0									# the amount of time before another scene can be launched
 export var loop := true											# if true, the launcher will always launch while the target is in sight (if false, will only launch the moment the target is sighted and never again until the target is unsighted and sighted again)
 export var scene: PackedScene									# the scene to be spawned

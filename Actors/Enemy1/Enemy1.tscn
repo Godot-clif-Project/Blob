@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TrokaraScripts/wall_sticker.gd" type="Script" id=1]
-[ext_resource path="res://TrokaraScripts/character_jump.gd" type="Script" id=2]
+[ext_resource path="res://AI/trigger_untrigger.gd" type="Script" id=2]
 [ext_resource path="res://Actors/Enemy1/enemy1.png" type="Texture" id=3]
 [ext_resource path="res://Actors/enemy_flag.gd" type="Script" id=4]
 [ext_resource path="res://CombatScripts/damageable.gd" type="Script" id=5]
-[ext_resource path="res://AI/node_sight.gd" type="Script" id=6]
+[ext_resource path="res://AI/node_sight2d.gd" type="Script" id=6]
 [ext_resource path="res://AI/scene_shooter.gd" type="Script" id=7]
 [ext_resource path="res://Actors/BlobBall1/BlobBall1.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Actors/Enemy1/chaser.gd" type="Script" id=10]
+[ext_resource path="res://AI/wander2d.gd" type="Script" id=9]
+[ext_resource path="res://AI/agro2d.gd" type="Script" id=10]
+[ext_resource path="res://AI/crow_goto.gd" type="Script" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 247.636
@@ -24,12 +26,6 @@ enable_slope_resistance = false
 position = Vector2( 0, 23.9045 )
 texture = ExtResource( 3 )
 
-[node name="CharacterJump" type="Node" parent="."]
-script = ExtResource( 2 )
-initial_jump_height = 800.0
-full_jump_height = 1500.0
-extra_jumps = 0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
@@ -39,16 +35,26 @@ script = ExtResource( 4 )
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource( 5 )
 
-[node name="NodeSight" type="RayCast2D" parent="."]
-enabled = true
+[node name="NodeSight2D" type="RayCast2D" parent="."]
 collision_mask = 3
 script = ExtResource( 6 )
 
 [node name="SceneShooter" type="Node2D" parent="."]
 script = ExtResource( 7 )
-trigger_node_path = NodePath("../NodeSight")
+trigger_node_path = NodePath("../NodeSight2D")
 scene = ExtResource( 8 )
 
-[node name="AStarGoto" type="Node" parent="."]
+[node name="CrowGoto" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="TriggerUntrigger" type="Node" parent="."]
+script = ExtResource( 2 )
+trigger_node_path = NodePath("../NodeSight2D")
+goto_path = NodePath("../CrowGoto")
+
+[node name="Wander2D" type="Node" parent="TriggerUntrigger"]
+script = ExtResource( 9 )
+
+[node name="Agro2D" type="Node" parent="TriggerUntrigger"]
 script = ExtResource( 10 )
-speed = 1000.0
+min_distance = 800.0
