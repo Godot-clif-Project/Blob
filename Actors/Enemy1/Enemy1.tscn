@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TrokaraScripts/wall_sticker.gd" type="Script" id=1]
 [ext_resource path="res://AI/trigger_untrigger.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://AI/wander2d.gd" type="Script" id=9]
 [ext_resource path="res://AI/agro2d.gd" type="Script" id=10]
 [ext_resource path="res://AI/crow_goto.gd" type="Script" id=11]
+[ext_resource path="res://Actors/Enemy1/auto_visibility.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 247.636
@@ -36,6 +37,7 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="NodeSight2D" type="RayCast2D" parent="."]
+enabled = true
 collision_mask = 3
 script = ExtResource( 6 )
 
@@ -58,3 +60,7 @@ script = ExtResource( 9 )
 [node name="Agro2D" type="Node" parent="TriggerUntrigger"]
 script = ExtResource( 10 )
 min_distance = 800.0
+
+[node name="AutoVisibility" type="VisibilityNotifier2D" parent="."]
+script = ExtResource( 12 )
+sprite_path = NodePath("../Sprite")

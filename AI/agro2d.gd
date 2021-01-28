@@ -21,7 +21,6 @@ func _loop() -> void:
 	get_parent().goto.one_shot = false
 	get_parent().goto.speed = speed
 	get_tree().connect("idle_frame", self, "continue_loop")
-	node_sight.enabled = true
 	
 	while active:
 		get_parent().goto.target_origin = target.global_transform.origin
@@ -39,7 +38,6 @@ func _loop() -> void:
 			get_parent().goto.enabled = get_parent().get_parent().global_transform.origin.distance_to(target.global_transform.origin) > min_distance
 	
 	get_parent().goto.enabled = false
-	node_sight.enabled = false
 	
 	if is_instance_valid(get_tree()):
 		get_tree().disconnect("idle_frame", self, "continue_loop")

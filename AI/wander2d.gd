@@ -10,6 +10,7 @@ export var wander_pause := 3.0
 export var horizontal_only := true
 export var revolve_around_origin := true				# if true, will wander around the origin of the character when this node was ready. Else, random origins will revolve around the characters current position
 
+var raycast := RayCast2D.new()
 var timer := Timer.new()
 
 onready var original_origin: Vector2 = get_parent().get_parent().global_transform.origin
