@@ -60,9 +60,6 @@ shadow_filter = 2
 [node name="Enemy1" parent="." instance=ExtResource( 7 )]
 position = Vector2( 6052.79, -5088.97 )
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Enemy1"]
-color = Color( 0, 0, 0, 1 )
-
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 1 )
 
@@ -88,3 +85,7 @@ occluder = SubResource( 7 )
 
 [node name="LightOccluder2D8" type="LightOccluder2D" parent="."]
 occluder = SubResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 6052.79, -5088.97 )
+color = Color( 0, 0, 0, 1 )
