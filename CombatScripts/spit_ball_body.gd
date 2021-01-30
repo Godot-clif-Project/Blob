@@ -4,7 +4,7 @@ class_name SpitBallBody
 extends Node2D
 
 
-export var shape_path: NodePath = "CollisionShape2D"
+export var shape: Shape2D
 export var speed := 10000.0
 export(int, LAYERS_2D_PHYSICS) var collision_mask := 3
 export var damage := 1
@@ -19,7 +19,6 @@ var down_vector: Vector2 = ProjectSettings.get_setting("physics/2d/default_gravi
 var gravity_vector: Vector2 = down_vector * gravity_acceleration
 var linear_velocity: Vector2
 
-onready var shape_node: CollisionShape2D = get_node(shape_path)
 onready var direct_space_state := get_world_2d().direct_space_state
 
 
@@ -66,7 +65,7 @@ func _ready():
 	linear_velocity = gravity_transform.basis_xform_inv(Vector2(travel_vector.x / t, - gravity_acceleration / 2 * t + travel_vector.y / t))
 	
 	physics_query.collision_layer = collision_mask
-	physics_query.set_shape(shape_node.shape)
+	physics_query.set_shape(shape)
 
 
 func _check_collisions() -> bool:
@@ -103,7 +102,7 @@ func _physics_process(delta: float):
 	# Rotates only the basis (godot should have a method for this already!)
 	global_transform.x = global_transform.x.rotated(rotation_angle)
 	global_transform.y = global_transform.y.rotated(rotation_angle)
-	physics_query.transform = shape_node.global_transform
+	physics_query.transform = global_transform
 	
 	if _check_collisions():
 		return

@@ -4,7 +4,7 @@ class_name HomingBallBody
 extends Node2D
 
 
-export var shape_path: NodePath = "CollisionShape2D"
+export var shape: Shape2D
 export var speed := 3000.0
 export(int, LAYERS_2D_PHYSICS) var collision_mask := 3
 export var damage := 1
@@ -18,14 +18,13 @@ var physics_query := Physics2DShapeQueryParameters.new()
 
 var _last_origin: Vector2
 
-onready var shape_node: CollisionShape2D = get_node(shape_path)
 onready var direct_space_state := get_world_2d().direct_space_state
 
 
 func _ready():
 	look_at(target.global_transform.origin)
 	physics_query.collision_layer = collision_mask
-	physics_query.set_shape(shape_node.shape)
+	physics_query.set_shape(shape)
 
 
 func _predict_target_position(delta: float) -> Vector2:
@@ -79,7 +78,7 @@ func _physics_process(delta: float):
 	new_transform.x = new_transform.x.rotated(rotation_angle)
 	new_transform.y = new_transform.y.rotated(rotation_angle)
 	global_transform = global_transform.interpolate_with(new_transform, turning_weight * delta)
-	physics_query.transform = shape_node.global_transform
+	physics_query.transform = global_transform
 	
 	if _check_collisions():
 		return
