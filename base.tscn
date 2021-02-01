@@ -1,10 +1,51 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://light.png" type="Texture" id=3]
 [ext_resource path="res://Assets/background.png" type="Texture" id=4]
 [ext_resource path="res://Actors/Enemy1/Enemy1.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.48538, 1 )
+colors = PoolColorArray( 0.0917921, 0.0150452, 0.113281, 1, 0.0601716, 0.00640869, 0.0820312, 1, 0.163364, 0.0249023, 0.1875, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 0.0220214 ), 0.0, 0.0, 0, 0, Vector2( 0.981013, 0.440203 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0.0126582, 0.120455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.474295 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+lifetime_randomness = 1.0
+trail_size_modifier = SubResource( 14 )
+emission_shape = 2
+emission_box_extents = Vector3( 2000, 2000, 2000 )
+flag_disable_z = true
+direction = Vector3( 100, 100, 100 )
+spread = 119.6
+gravity = Vector3( 1, 20, 1 )
+angular_velocity = 38.51
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 20.69
+radial_accel_random = 1.0
+tangential_accel = 20.0
+tangential_accel_random = 1.0
+tangential_accel_curve = SubResource( 10 )
+scale = 0.2
+color_ramp = SubResource( 17 )
+hue_variation_random = 0.19
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 17792, -640, 17792, -2432, 18432, -2432, 18432, -640 )
@@ -48,17 +89,28 @@ collision/safe_margin = 1.0
 floor_max_angle_degrees = 100.0
 enable_slope_resistance = false
 
+[node name="Particles2D" type="Particles2D" parent="Player"]
+position = Vector2( 8, 16 )
+amount = 10
+lifetime = 10.0
+preprocess = 10.0
+randomness = 0.4
+local_coords = false
+process_material = SubResource( 15 )
+texture = ExtResource( 3 )
+
 [node name="Light2D" type="Light2D" parent="Player"]
 position = Vector2( 135.887, 101.016 )
 texture = ExtResource( 3 )
 texture_scale = 6.93
-color = Color( 0.984314, 0.929412, 0.929412, 1 )
+color = Color( 0.917647, 0.776471, 0.776471, 1 )
 mode = 2
 shadow_enabled = true
+shadow_color = Color( 1, 1, 1, 0 )
 shadow_filter = 2
 
 [node name="Enemy1" parent="." instance=ExtResource( 7 )]
-position = Vector2( 6052.79, -5088.97 )
+position = Vector2( 2728, -11040 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 1 )
