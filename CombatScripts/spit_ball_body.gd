@@ -24,16 +24,15 @@ onready var direct_space_state := get_world_2d().direct_space_state
 
 func _ready():
 	var travel_vector: Vector2
-	var gravity_transform := Transform2D(Vector2.DOWN.angle_to(down_vector), global_transform.origin)
 	
 	if target_prediction:
 		hide()
 		set_physics_process(false)
 		
-		var last_origin: Vector2 = gravity_transform.xform_inv(target.global_transform.origin)
+		var last_origin: Vector2 = target.global_transform.origin - global_transform.origin
 		var last_time := OS.get_system_time_msecs()
 		yield(get_tree(), "idle_frame")
-		travel_vector = gravity_transform.xform_inv(target.global_transform.origin)
+		travel_vector = target.global_transform.origin - global_transform.origin
 		var target_velocity := (travel_vector - last_origin) / (OS.get_system_time_msecs() - last_time) * 1000.0
 		
 		if target_velocity.length() > 0:
@@ -43,26 +42,9 @@ func _ready():
 		set_physics_process(true)
 	
 	else:
-		travel_vector = gravity_transform.xform_inv(target.global_transform.origin)
+		travel_vector = target.global_transform.origin - global_transform.origin
 	
-	var t: float
-	var a := gravity_acceleration * gravity_acceleration / 4
-	var b := - gravity_acceleration * travel_vector.y
-	var c := travel_vector.length_squared() - speed * speed
-	var root1 := GlobalData.quad_formula(a, b, c, true)
-	var root2 := GlobalData.quad_formula(a, b, c, false)
-	
-	if root1 > 0 and root2 > 0:
-		t = sqrt(root1 if root1 < root2 else root2)
-	
-	elif root1 > 0 or root2 > 0:
-		t = sqrt(root1 if root1 > 0 else root2)
-	
-	if t == 0:
-		queue_free()
-		return
-	
-	linear_velocity = gravity_transform.basis_xform_inv(Vector2(travel_vector.x / t, - gravity_acceleration / 2 * t + travel_vector.y / t))
+	linear_velocity = travel_vector.normalized() * speed + Vector2.UP * gravity_acceleration * travel_vector.length() / speed / 2
 	
 	physics_query.collision_layer = collision_mask
 	physics_query.set_shape(shape)
