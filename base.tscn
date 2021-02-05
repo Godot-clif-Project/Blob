@@ -139,6 +139,5 @@ occluder = SubResource( 14 )
 occluder = SubResource( 15 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2( 6052.79, -5088.97 )
 color = Color( 0, 0, 0, 1 )
