@@ -3,6 +3,7 @@ extends InventoryItem
 
 
 func _init():
+	name = "JumpCharm"
 	icon = preload("res://Inventory/items/jump_charm.png")
 
 

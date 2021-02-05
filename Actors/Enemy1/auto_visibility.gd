@@ -20,6 +20,7 @@ func _process(_delta):
 		yield(get_tree(), "idle_frame")
 		
 		if is_on_screen():
+			# warning-ignore:shadowed_variable
 			var original_transform := global_transform
 			parent.remove_child(self)
 			parent.get_parent().add_child(self)

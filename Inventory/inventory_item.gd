@@ -3,6 +3,7 @@ class_name InventoryItem
 extends Reference
 
 
+var name: String
 var icon: Texture
 var owner: Node
 
