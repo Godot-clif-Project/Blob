@@ -3,6 +3,6 @@ extends Node
 
 
 # Add pre-existing items here
-var items := [
-	
-]
+var items := {
+	"JumpCharm": JumpCharm.new()
+}

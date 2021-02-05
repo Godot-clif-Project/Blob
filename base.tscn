@@ -6,28 +6,28 @@
 [ext_resource path="res://Assets/background.png" type="Texture" id=4]
 [ext_resource path="res://Actors/Enemy1/Enemy1.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.48538, 1 )
 colors = PoolColorArray( 0.0917921, 0.0150452, 0.113281, 1, 0.0601716, 0.00640869, 0.0820312, 1, 0.163364, 0.0249023, 0.1875, 1 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.0220214 ), 0.0, 0.0, 0, 0, Vector2( 0.981013, 0.440203 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="Curve" id=13]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0.0126582, 0.120455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.474295 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=14]
-curve = SubResource( 13 )
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=7]
 lifetime_randomness = 1.0
-trail_size_modifier = SubResource( 14 )
+trail_size_modifier = SubResource( 6 )
 emission_shape = 2
 emission_box_extents = Vector3( 2000, 2000, 2000 )
 flag_disable_z = true
@@ -42,33 +42,33 @@ radial_accel = 20.69
 radial_accel_random = 1.0
 tangential_accel = 20.0
 tangential_accel_random = 1.0
-tangential_accel_curve = SubResource( 10 )
+tangential_accel_curve = SubResource( 4 )
 scale = 0.2
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 2 )
 hue_variation_random = 0.19
 
-[sub_resource type="OccluderPolygon2D" id=1]
+[sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( 17792, -640, 17792, -2432, 18432, -2432, 18432, -640 )
 
-[sub_resource type="OccluderPolygon2D" id=2]
+[sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( 17792, -640, -8320, -640, -8320, 8, 17792, 0 )
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=10]
 polygon = PoolVector2Array( 17792, -2432, 13184, -2432, 13184, -10624, 17792, -10624, 17792, -12416, 13184, -12416, 13184, -12928, 18304, -12928, 18304, -10112, 13696, -10112, 13696, -2944, 18304, -2944, 18312, -2432 )
 
-[sub_resource type="OccluderPolygon2D" id=4]
+[sub_resource type="OccluderPolygon2D" id=11]
 polygon = PoolVector2Array( -640, -4480, -640, -2432, 10624, -2432, 10624, -12160, 3200, -12160, 3200, -10624, -640, -10624, -640, -5504, 3712, -5504, 3712, -11648, 8576, -11648, 8576, -4480 )
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=12]
 polygon = PoolVector2Array( -8320, 0, -8320, 2432, -10112, 2432, -10112, -640, -12160, -640, -12160, -128, -10624, -128, -10624, 2944, -7808, 2944, -7808, 0 )
 
-[sub_resource type="OccluderPolygon2D" id=6]
+[sub_resource type="OccluderPolygon2D" id=13]
 polygon = PoolVector2Array( -157.538, -18.5179, -157.538, 26.5731, -86.1862, 26.5731, -86.1862, -18.5179 )
 
-[sub_resource type="OccluderPolygon2D" id=7]
+[sub_resource type="OccluderPolygon2D" id=14]
 polygon = PoolVector2Array( -8320, -5504, -3200, -5504, -3200, -10624, -8320, -10624 )
 
-[sub_resource type="OccluderPolygon2D" id=8]
+[sub_resource type="OccluderPolygon2D" id=15]
 polygon = PoolVector2Array( -12160, -2944, -12160, -2432, -10112, -2432, -10112, -10624, -10624, -10624, -10624, -2944 )
 
 [node name="base" type="Node2D"]
@@ -96,7 +96,7 @@ lifetime = 10.0
 preprocess = 10.0
 randomness = 0.4
 local_coords = false
-process_material = SubResource( 15 )
+process_material = SubResource( 7 )
 texture = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -113,31 +113,32 @@ shadow_filter = 2
 position = Vector2( 2728, -11040 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 1 )
+occluder = SubResource( 8 )
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
-occluder = SubResource( 2 )
+occluder = SubResource( 9 )
 
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
-occluder = SubResource( 3 )
+occluder = SubResource( 10 )
 
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
-occluder = SubResource( 4 )
+occluder = SubResource( 11 )
 
 [node name="LightOccluder2D5" type="LightOccluder2D" parent="."]
-occluder = SubResource( 5 )
+occluder = SubResource( 12 )
 
 [node name="LightOccluder2D6" type="LightOccluder2D" parent="."]
 position = Vector2( 2984.5, -3638.93 )
 scale = Vector2( 71.7574, 45.4192 )
-occluder = SubResource( 6 )
+occluder = SubResource( 13 )
 
 [node name="LightOccluder2D7" type="LightOccluder2D" parent="."]
-occluder = SubResource( 7 )
+occluder = SubResource( 14 )
 
 [node name="LightOccluder2D8" type="LightOccluder2D" parent="."]
-occluder = SubResource( 8 )
+occluder = SubResource( 15 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( 6052.79, -5088.97 )
 color = Color( 0, 0, 0, 1 )

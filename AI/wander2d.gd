@@ -16,7 +16,7 @@ var timer := Timer.new()
 onready var original_origin: Vector2 = get_parent().get_parent().global_transform.origin
 
 
-func _enter_tree():
+func _ready():
 	add_child(timer)
 	timer.one_shot = true
 	timer.connect("timeout", self, "continue_loop")

@@ -16,7 +16,9 @@ func _ready():
 
 func _handle_updated() -> void:
 	if get_index() < inventory.inventory.size():
-		texture = inventory.inventory[get_index()].icon
+		var item: InventoryItem = inventory.inventory[get_index()]
+		if item != null:
+			texture = item.icon
 	
 	else:
 		texture = null
