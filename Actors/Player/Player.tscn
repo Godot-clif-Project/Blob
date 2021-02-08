@@ -58,7 +58,9 @@ zoom = Vector2( 9, 9 )
 smoothing_enabled = true
 script = ExtResource( 8 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=[
+"UI",
+]]
 
 [node name="RunInventory" type="TextureRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0.8 )

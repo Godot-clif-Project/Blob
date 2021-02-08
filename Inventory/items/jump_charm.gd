@@ -8,8 +8,14 @@ func _init():
 
 
 func _activate():
-	owner.get_node("ControllableCharacterJump").extra_jumps = 1
+	var jump_node: ControllableCharacterJump = owner.get_node("ControllableCharacterJump")
+	jump_node.extra_jumps = 1
+	
+	if owner.is_on_floor():
+		jump_node.current_jumps = 1
 
 
 func _deactivate():
-	owner.get_node("ControllableCharacterJump").extra_jumps = 0
+	var jump_node: ControllableCharacterJump = owner.get_node("ControllableCharacterJump")
+	jump_node.current_jumps = 0
+	jump_node.extra_jumps = 0

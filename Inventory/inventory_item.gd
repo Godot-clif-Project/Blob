@@ -17,8 +17,9 @@ func _activate_internal(inventory_owner: Node) -> void:
 
 
 func _deactivate_internal() -> void:
-	owner = null
-	_deactivate()
+	if owner != null:
+		_deactivate()
+		owner = null
 
 
 func _activate() -> void:

@@ -3,6 +3,7 @@ class_name Inventory
 extends Node
 
 
+signal linked_to_inventory
 signal items_updated
 
 export var inventory_size := 3 setget set_inventory_size
@@ -10,6 +11,14 @@ export var activate_items := false
 
 var inventory := [null, null, null]
 var inventory_item_names := ["", "", ""]
+var other_inventory: Inventory setget set_other_inventory
+
+
+func set_other_inventory(inv: Inventory) -> void:
+	other_inventory = inv
+	
+	if inv != null:
+		emit_signal("linked_to_inventory")
 
 
 func set_inventory_size(value: int) -> void:
@@ -47,7 +56,9 @@ func add_item(item: InventoryItem) -> int:
 	var idx := inventory.find(null)
 	
 	if idx != -1:
-		item._activate_internal(owner)
+		if activate_items:
+			item._activate_internal(owner)
+		
 		inventory[idx] = item
 		inventory_item_names[idx] = item.name
 		emit_signal("items_updated")
