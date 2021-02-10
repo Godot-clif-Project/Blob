@@ -82,10 +82,12 @@ tile_data = PoolIntArray( -1114095, 0, 0, -1114094, 0, 0, -1114093, 0, 0, -11140
 show_behind_parent = true
 position = Vector2( 2984.5, -3638.93 )
 scale = Vector2( 71.7574, 45.4192 )
+z_index = -2
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 17320, -976 )
+z_index = 1
 collision/safe_margin = 1.0
 floor_max_angle_degrees = 100.0
 enable_slope_resistance = false
@@ -144,4 +146,4 @@ position = Vector2( 6052.79, -5088.97 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Chest" parent="." instance=ExtResource( 5 )]
-position = Vector2( 15491.2, -806.292 )
+position = Vector2( 15504, -760 )
