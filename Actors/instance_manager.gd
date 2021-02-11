@@ -6,7 +6,7 @@ signal can_respawn
 signal respawning
 
 export(Array, String, FILE, "*.tscn") var preload_scene_path: Array
-export var respawn_free_distance := 3000.0
+export var respawn_free_distance := 6000.0
 
 var cached_scenes: Dictionary
 
@@ -31,8 +31,8 @@ func _process(_delta):
 	elif not _can_respawn:
 		emit_signal("can_respawn")
 		
-		for child in get_children():
-			child.queue_free()
+#		for child in get_children():
+#			child.queue_free()
 		
 		_can_respawn = true
 
@@ -40,10 +40,10 @@ func _process(_delta):
 func queue_respawn(instance: Node) -> void:
 	var new_scene: Node = cached_scenes[instance.get_parent().filename].instance()
 	new_scene.transform = instance.original_transform
-	
+	print("Lol")
 	if not _can_respawn:
 		yield(self, "can_respawn")
-	
+	print("Lol")
 	_respawns_queued = true
 	yield(self, "respawning")
 	add_child(new_scene)
