@@ -131,6 +131,18 @@ preload_scene_path = [ "res://Actors/Enemy1/Enemy1.tscn" ]
 [node name="Node2D" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 8346.97, -1940.91 )
 
+[node name="Node2D5" parent="map1" instance=ExtResource( 8 )]
+position = Vector2( 13880, -11904.3 )
+
+[node name="Node2D6" parent="map1" instance=ExtResource( 8 )]
+position = Vector2( -11616.6, -11904.3 )
+
+[node name="Node2D3" parent="map1" instance=ExtResource( 8 )]
+position = Vector2( -6618.65, -1919.99 )
+
+[node name="Node2D4" parent="map1" instance=ExtResource( 8 )]
+position = Vector2( -11214.1, -1920.19 )
+
 [node name="Node2D2" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 3894.58, -1978.96 )
 
@@ -152,14 +164,11 @@ process_material = SubResource( 15 )
 texture = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
-position = Vector2( 135.887, 101.016 )
 texture = ExtResource( 3 )
-texture_scale = 6.93
-color = Color( 0.917647, 0.776471, 0.776471, 1 )
-mode = 2
+texture_scale = 10.0
+color = Color( 0.572549, 0.309804, 0.309804, 1 )
+energy = 0.8
 shadow_enabled = true
-shadow_color = Color( 1, 1, 1, 0 )
-shadow_filter = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 6052.79, -5088.97 )

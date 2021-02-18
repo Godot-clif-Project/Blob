@@ -51,10 +51,10 @@ shape = SubResource( 1 )
 script = ExtResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -500 )
+position = Vector2( 0.000759125, 0.00175476 )
 rotating = true
 current = true
-zoom = Vector2( 30, 30 )
+zoom = Vector2( 10, 10 )
 smoothing_enabled = true
 script = ExtResource( 8 )
 
