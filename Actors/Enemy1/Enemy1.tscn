@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TrokaraScripts/wall_sticker.gd" type="Script" id=1]
 [ext_resource path="res://AI/trigger_untrigger.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://AI/wander2d.gd" type="Script" id=9]
 [ext_resource path="res://AI/agro2d.gd" type="Script" id=10]
 [ext_resource path="res://AI/crow_goto.gd" type="Script" id=11]
+[ext_resource path="res://shader.tres" type="Material" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 247.636
@@ -25,6 +26,7 @@ dont_slide_up_walls = false
 enable_slope_resistance = false
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 12 )
 position = Vector2( 0, 23.9045 )
 texture = ExtResource( 3 )
 

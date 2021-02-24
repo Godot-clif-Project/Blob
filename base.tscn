@@ -131,30 +131,25 @@ preload_scene_path = [ "res://Actors/Enemy1/Enemy1.tscn" ]
 
 [node name="Node2D" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 8346.97, -1940.91 )
-frame = 0
 
 [node name="Node2D7" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 21294.9, -6524.98 )
+frame = 0
 
 [node name="Node2D5" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 13880, -11904.3 )
-frame = 0
 
 [node name="Node2D6" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( -12890, -11904.6 )
-frame = 0
 
 [node name="Node2D3" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( -6618.65, -1919.99 )
-frame = 0
 
 [node name="Node2D4" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( -11214.1, -1920.19 )
-frame = 0
 
 [node name="Node2D2" parent="map1" instance=ExtResource( 8 )]
 position = Vector2( 3894.58, -1978.96 )
-frame = 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 17320, -976 )
