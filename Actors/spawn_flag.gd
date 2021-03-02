@@ -24,7 +24,6 @@ func _ready():
 
 
 func _process(_delta):
-	print("a")
 	if instance_manager.player.global_transform.origin.distance_to(get_parent().global_transform.origin) >= despawn_distance:
 		get_parent().queue_free()
 

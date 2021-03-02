@@ -40,7 +40,6 @@ func _process(_delta):
 func queue_respawn(instance: Node) -> void:
 	var new_scene: Node = cached_scenes[instance.get_parent().filename].instance()
 	new_scene.transform = instance.original_transform
-	print("Lol")
 	if not _can_respawn:
 		yield(self, "can_respawn")
 	print("Lol")
