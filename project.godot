@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://CombatScripts/damageable.gd"
 }, {
+"base": "Area2D",
+"class": "DisablerArea",
+"language": "GDScript",
+"path": "res://disabler_area.gd"
+}, {
 "base": "Node",
 "class": "FaceMovement2D",
 "language": "GDScript",
@@ -169,6 +174,7 @@ _global_script_class_icons={
 "ControllableCharacterJump": "",
 "CrowGoto": "",
 "Damageable": "",
+"DisablerArea": "",
 "FaceMovement2D": "",
 "Fade": "",
 "HomingBallBody": "",
